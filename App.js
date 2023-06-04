@@ -29,9 +29,9 @@ const fetchContacts = async () => {
 
  const inputSearch = function(input_data){
    setSearchText(input_data);
-   const filtered = contacts.filter((contact)=>{
+   const filtered = contacts.filter((contact)=>
       contact.firstName.toLowerCase().includes(input_data.toLowerCase())
-   })
+      );
    setContacts(filtered);
 
  }
@@ -47,10 +47,10 @@ const fetchContacts = async () => {
     <FlatList
   data={contacts}
   renderItem={(contact ) => (
-    <TouchableOpacity>
-      <Text>{contact.firstName}</Text>
+    <TouchableOpacity  style={styles.contactItem}>
+      <Text style={styles.contactName} >{contact.item.firstName}</Text>
      
-        <Text>{contact.item.phoneNumbers[0].number}</Text>
+        <Text style={styles.contactNumber}>{contact.item.phoneNumbers[0].number}</Text>
       
     </TouchableOpacity>
   )}
@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 40,
     paddingHorizontal: 20,
+    backgroundColor:'black'
   },
   input: {
     height: 40,
@@ -71,5 +72,24 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     paddingHorizontal: 10,
     marginBottom: 10,
+    backgroundColor:'white',
+    fontSize:20
+  },
+  contactItem: {
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: 'lightgray',
+  },
+  contactName: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color:'white'
+  },
+  contactNumber: {
+    fontSize: 16,
+    marginBottom: 20,
+    color:'white'
+
   },
 });
