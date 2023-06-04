@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View,useState,useEffect } from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { useEffect,useState } from 'react';
 import * as Contacts from 'expo-contacts';
 
 export default function App() {
@@ -7,7 +8,8 @@ export default function App() {
   const [contacts, setContacts] = useState([]);
   const [selectedContact, setSelectedContact] = useState(null);
 
-   useEffect(
+   useEffect(()=>{
+    fetchContacts();},
     []);
 
 
@@ -25,8 +27,22 @@ export default function App() {
        }
  }
 
+ const inputSearch = function(input_data){
+   setSearchText(input_data);
+   const filtered = contacts.filter((contact)=>{
+      contact.firstName.toLowerCase().includes(input_data.toLowerCase())
+   })
+   setContacts(filtered);
+
+ }
+
   return (
-    <Text></Text>
+   <View style={styles.container}>
+      <TextInput
+        placeholder='Search Contacts'
+        onChangeText={inputSearch}
+      />
+   </View>
   );
 }
 
