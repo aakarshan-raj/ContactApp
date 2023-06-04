@@ -1,13 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View,useState,useEffect } from 'react-native';
 import * as Contacts from 'expo-contacts';
 
 export default function App() {
+
+  const [searchText, setSearchText] = useState('');
+  const [contacts, setContacts] = useState([]);
+  const [selectedContact, setSelectedContact] = useState(null);
+
+   useEffect(
+    []);
+
+
+
+    const fetchContacts = async function(){
+
+    }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Text></Text>
   );
 }
 
