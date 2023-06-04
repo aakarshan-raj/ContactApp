@@ -5,7 +5,9 @@ import * as Contacts from 'expo-contacts';
 export default function App() {
 
   const [searchText, setSearchText] = useState('');
+  const [showContacts, showSetContacts] = useState([]);
   const [contacts, setContacts] = useState([]);
+
   const [selectedContact, setSelectedContact] = useState(null);
 
    useEffect(()=>{
@@ -23,6 +25,7 @@ const fetchContacts = async () => {
 
       if (data.length > 0) {
         setContacts(data);
+        showSetContacts(data);
       }
     }
   };
@@ -32,7 +35,7 @@ const fetchContacts = async () => {
    const filtered = contacts.filter((contact)=>
       contact.firstName.toLowerCase().includes(input_data.toLowerCase())
       );
-   setContacts(filtered);
+   showSetContacts(filtered);
 
  }
 
@@ -49,7 +52,7 @@ const fetchContacts = async () => {
         style={styles.input}
       />
     <FlatList
-     data={contacts}
+     data={showContacts}
      renderItem={({item}) => (
     <TouchableOpacity  style={styles.contactItem}
     onPress={ () => handlePress(item)}
