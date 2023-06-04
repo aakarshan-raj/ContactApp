@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput, FlatList, TouchableOpacity } from 'react-native';
 import { useEffect,useState } from 'react';
 import * as Contacts from 'expo-contacts';
 
@@ -13,19 +13,19 @@ export default function App() {
     []);
 
 
+const fetchContacts = async () => {
+    const { status } = await Contacts.requestPermissionsAsync();
 
-  const fetchContacts = async function(){
-    const {permissionStatus} = await Contacts.getPermissionsAsync();
-      if(permissionStatus === "granted"){
-         const {data} = await Contacts.getContainersAsync({
-         fields:[Contacts.Fields.FirstName,Contacts.Fields.LastName,Contacts.Fields.PhoneNumbers],});
-         
-         if(data.length > 0){
-              setContacts(data);
-            }
-        
-       }
- }
+    if (status === 'granted') {
+      const { data } = await Contacts.getContactsAsync({
+        fields: [Contacts.Fields.FirstName, Contacts.Fields.PhoneNumbers],
+      });
+
+      if (data.length > 0) {
+        setContacts(data);
+      }
+    }
+  };
 
  const inputSearch = function(input_data){
    setSearchText(input_data);
@@ -41,7 +41,20 @@ export default function App() {
       <TextInput
         placeholder='Search Contacts'
         onChangeText={inputSearch}
+        value={searchText}
+        style={styles.input}
       />
+    <FlatList
+  data={contacts}
+  renderItem={(contact ) => (
+    <TouchableOpacity>
+      <Text>{contact.firstName}</Text>
+     
+        <Text>{contact.item.phoneNumbers[0].number}</Text>
+      
+    </TouchableOpacity>
+  )}
+/>
    </View>
   );
 }
@@ -49,8 +62,14 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: 40,
+    paddingHorizontal: 20,
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    paddingHorizontal: 10,
+    marginBottom: 10,
   },
 });
