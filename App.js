@@ -89,7 +89,7 @@ const fetchContacts = async () => {
                 style={styles.closeButton}
                 onPress={() => setSelectedContact(null)}
               >
-                <Text style={styles.closeButtonText}>Close</Text>
+                <Text style={styles.closeButtonText}>Close   X</Text>
               </TouchableOpacity>
             </View>
           )}
@@ -104,9 +104,9 @@ const fetchContacts = async () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 40,
+    paddingTop: 30,
     paddingHorizontal: 20,
-    backgroundColor:'black'
+    backgroundColor:'#101210'
   },
   input: {
     height: 40,
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
 
   },
   modalContainer: {
-    backgroundColor:'white',
+    backgroundColor:'#101210',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -150,9 +150,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   closeButton: {
+    marginTop:20,
     backgroundColor: 'lightgray',
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 5,
+    borderRadius: 20,
   },
 });
