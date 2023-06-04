@@ -12,9 +12,18 @@ export default function App() {
 
 
 
-    const fetchContacts = async function(){
-
-    }
+  const fetchContacts = async function(){
+    const {permissionStatus} = await Contacts.getPermissionsAsync();
+      if(permissionStatus === "granted"){
+         const {data} = await Contacts.getContainersAsync({
+         fields:[Contacts.Fields.FirstName,Contacts.Fields.LastName,Contacts.Fields.PhoneNumbers],});
+         
+         if(data.length > 0){
+              setContacts(data);
+            }
+        
+       }
+ }
 
   return (
     <Text></Text>
