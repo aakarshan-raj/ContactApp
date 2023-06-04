@@ -1,5 +1,7 @@
 # Contacts App
 
+Final apk build: [https://expo.dev/artifacts/eas/vC2qFFL7sduhMY1TE25ZE3.apk]
+
 This is a simple React Native app that allows you to search and display contacts from your device's contact list. The app utilizes the Expo Contacts API to fetch and display the contacts.
 
 To install expo-contacts: `npx expo install expo-contacts`
