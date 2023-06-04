@@ -20,12 +20,22 @@ const fetchContacts = async () => {
 
     if (status === 'granted') {
       const { data } = await Contacts.getContactsAsync({
-        fields: [Contacts.Fields.FirstName, Contacts.Fields.PhoneNumbers],
+        fields: [Contacts.Fields.FirstName,Contacts.Fields.LastName ,Contacts.Fields.PhoneNumbers],
       });
 
       if (data.length > 0) {
-        setContacts(data);
-        showSetContacts(data);
+        const updatedContacts = data.map(contact => {
+          if (contact.lastName) {
+            return {
+              ...contact,
+              firstName: `${contact.firstName} ${contact.lastName}`,
+            };
+          }
+          return contact;
+        });
+  
+        setContacts(updatedContacts);
+        showSetContacts(updatedContacts);
       }
     }
   };
