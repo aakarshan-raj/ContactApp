@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, FlatList, TouchableOpacity, Modal } from 'react-native';
 import { useEffect,useState } from 'react';
 import * as Contacts from 'expo-contacts';
 
@@ -36,6 +36,10 @@ const fetchContacts = async () => {
 
  }
 
+ const handlePress = function(item){
+  setSelectedContact(item);
+ }
+
   return (
    <View style={styles.container}>
       <TextInput
@@ -45,16 +49,23 @@ const fetchContacts = async () => {
         style={styles.input}
       />
     <FlatList
-  data={contacts}
-  renderItem={(contact ) => (
-    <TouchableOpacity  style={styles.contactItem}>
-      <Text style={styles.contactName} >{contact.item.firstName}</Text>
+     data={contacts}
+     renderItem={(item) => (
+    <TouchableOpacity  style={styles.contactItem}
+    onPress={ () => handlePress(item)}
+    >
+        <Text style={styles.contactName}>{item.item.firstName}</Text>
      
-        <Text style={styles.contactNumber}>{contact.item.phoneNumbers[0].number}</Text>
+        <Text style={styles.contactNumber}>{item.item.phoneNumbers[0].number}</Text>
       
     </TouchableOpacity>
   )}
 />
+
+
+
+
+
    </View>
   );
 }
