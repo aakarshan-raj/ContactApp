@@ -50,20 +50,38 @@ const fetchContacts = async () => {
       />
     <FlatList
      data={contacts}
-     renderItem={(item) => (
+     renderItem={({item}) => (
     <TouchableOpacity  style={styles.contactItem}
     onPress={ () => handlePress(item)}
     >
-        <Text style={styles.contactName}>{item.item.firstName}</Text>
+        <Text style={styles.contactName}>{item.firstName}</Text>
      
-        <Text style={styles.contactNumber}>{item.item.phoneNumbers[0].number}</Text>
+        <Text style={styles.contactNumber}>{item.phoneNumbers[0].number}</Text>
       
     </TouchableOpacity>
   )}
 />
 
-
-
+<Modal visible={selectedContact !== null} animationType="slide">
+        <View style={styles.modalContainer}>
+          {selectedContact && (
+            <View style={styles.contactModal}>
+              <Text style={styles.contactName}>{selectedContact.firstName}</Text>
+              {selectedContact.phoneNumbers && (
+                <Text style={styles.contactNumber}>
+                  {selectedContact.phoneNumbers[0].number}
+                </Text>
+              )}
+              <TouchableOpacity
+                style={styles.closeButton}
+                onPress={() => setSelectedContact(null)}
+              >
+                <Text style={styles.closeButtonText}>Close</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        </View>
+      </Modal>
 
 
    </View>
@@ -102,5 +120,24 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     color:'white'
 
+  },
+  modalContainer: {
+    backgroundColor:'black',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  contactModal: {
+    backgroundColor: 'black',
+    padding: 20,
+    borderRadius: 10,
+    elevation: 5,
+    alignItems: 'center',
+  },
+  closeButton: {
+    backgroundColor: 'lightgray',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
   },
 });
