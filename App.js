@@ -67,11 +67,11 @@ const fetchContacts = async () => {
           {selectedContact && (
             <View style={styles.contactModal}>
               <Text style={styles.contactName}>{selectedContact.firstName}</Text>
-              {selectedContact.phoneNumbers && (
+           
                 <Text style={styles.contactNumber}>
                   {selectedContact.phoneNumbers[0].number}
                 </Text>
-              )}
+           
               <TouchableOpacity
                 style={styles.closeButton}
                 onPress={() => setSelectedContact(null)}
@@ -122,12 +122,14 @@ const styles = StyleSheet.create({
 
   },
   modalContainer: {
-    backgroundColor:'black',
+    backgroundColor:'white',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   contactModal: {
+    width:'50%',
+    height:'30%',
     backgroundColor: 'black',
     padding: 20,
     borderRadius: 10,
