@@ -35,3 +35,16 @@ To use the app, follow these steps:
 - Tap on a contact item in the list to select it. This will open a modal displaying the selected contact's details, including the full name and phone number.
 - To close the modal, tap the "Close X" button.
 
+<table>
+  <tr>
+    <td>
+      <img src="assets/git_asset/one.png" alt="Image 1">
+    </td>
+    <td>
+      <img src="assets/git_asset/two.png" alt="Image 2">
+    </td>
+    <td>
+      <img src="assets/git_asset/three.png" alt="Image 3">
+    </td>
+  </tr>
+</table>

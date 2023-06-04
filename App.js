@@ -68,9 +68,9 @@ const fetchContacts = async () => {
     onPress={ () => handlePress(item)}
     >
         <Text style={styles.contactName}>{item.firstName}</Text>
-     
+        {item.phoneNumbers && (
         <Text style={styles.contactNumber}>{item.phoneNumbers[0].number}</Text>
-      
+        )}
     </TouchableOpacity>
   )}
 />
@@ -80,11 +80,11 @@ const fetchContacts = async () => {
           {selectedContact && (
             <View style={styles.contactModal}>
               <Text style={styles.contactName}>{selectedContact.firstName}</Text>
-           
+              {selectedContact.phoneNumbers && (
                 <Text style={styles.contactNumber}>
                   {selectedContact.phoneNumbers[0].number}
                 </Text>
-           
+            )}
               <TouchableOpacity
                 style={styles.closeButton}
                 onPress={() => setSelectedContact(null)}
