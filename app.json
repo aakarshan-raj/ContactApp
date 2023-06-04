@@ -7,7 +7,7 @@
           "contactsPermission": "Allow $(PRODUCT_NAME) to access your contacts."
         }
       ]
-    ]
+    ],
     "name": "contactApp",
     "slug": "contactApp",
     "version": "1.0.0",
