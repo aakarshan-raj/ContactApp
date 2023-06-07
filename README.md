@@ -1,4 +1,4 @@
-# Contacts App
+# Contact App
 
 Final apk build: [https://expo.dev/artifacts/eas/vC2qFFL7sduhMY1TE25ZE3.apk]
 
